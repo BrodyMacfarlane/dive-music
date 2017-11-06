@@ -7,6 +7,7 @@ const express = require('express')
      ,passport = require('passport')
      ,Auth0Strategy = require('passport-auth0')
      ,massive = require('massive')
+     ,sc = require('./signer')
 
 const app = express();
 app.use(bodyParser.json())
@@ -89,6 +90,10 @@ app.get('/auth/logout', (req, res) => {
     req.logOut();
     res.redirect(308, 'http://localhost:3000/')
 })
+
+
+//signer
+app.post('/api/getSignedURL', sc.getSignedURL)
 
 
 const PORT = 3535;
