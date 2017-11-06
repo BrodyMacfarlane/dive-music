@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
+import { getUserInfo } from './../../ducks/users'
+import { connect } from 'react-redux'
+import './droppy.css'
 
-export class Droppy extends Component {
-    constructor() {
-      super()
+class Droppy extends Component {
+    constructor(props) {
+      super(props)
       this.state = { files: [] }
+    }
+    componentDidMount(){
+      this.props.getUserInfo()
     }
     onDrop(files) {
       var file = files[0]
@@ -30,7 +36,14 @@ export class Droppy extends Component {
         };
         axios.put(signedRequest, file, options)
         .then((result) => {
-          console.log(result)
+          let auth_id = this.props.user.auth_id;
+          let songData = {
+            creator_id: auth_id,
+            title: file.name,
+            url: url
+          }
+          axios.post('http://localhost:3535/api/newSong', songData)
+          // console.log(result)
         })
         .catch((err) => {
           console.log(err)
@@ -38,22 +51,28 @@ export class Droppy extends Component {
       })
     }
     render() {
+      const user = this.props.user
       return (
-        <section>
+        <div className="container dropzone-container">
           <div className="dropzone">
-            <Dropzone onDrop={this.onDrop.bind(this)}>
-              <p>Try dropping some files here, or click to select files to upload.</p>
+            <Dropzone className="droppydrop" onDrop={this.onDrop.bind(this)}>
+              <div>Drop a file here, or click to select a file to upload.</div>
             </Dropzone>
           </div>
-          <aside>
-            <h2>Dropped files</h2>
-            <ul>
+            <div>Dropped file:</div>
+            <div>
               {
-                this.state.files.map(f => <li key={f.name}>{f.name} - {f.size/1024 > 1000 ? (Math.floor(f.size/104857.6))/10 + "mb" : (Math.floor(f.size/102.4))/10 + "kb"}</li>)
+                this.state.files.map(f => <div key={f.name}>{f.name} - {f.size/1024 > 1000 ? (Math.floor(f.size/104857.6))/10 + "mb" : (Math.floor(f.size/102.4))/10 + "kb"}</div>)
               }
-            </ul>
-          </aside>
-        </section>
+            </div>
+            <p>Users auth id: { user ? user.auth_id : null }</p>
+        </div>
       );
     }
   }
+  function mapStateToProps(state) {
+    return {
+      user: state.user
+    }
+  }
+  export default connect(mapStateToProps, {getUserInfo})(Droppy)

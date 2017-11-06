@@ -79,6 +79,7 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 
 app.get('/auth/me', (req, res) => {
+    console.log(req)
     if(req.user){
         return res.status(200).send(req.user)
     }
@@ -94,6 +95,15 @@ app.get('/auth/logout', (req, res) => {
 
 //signer
 app.post('/api/getSignedURL', sc.getSignedURL)
+
+
+app.post('/api/newSong', (req, res) => {
+    const db = app.get('db')
+    const songData = req.body
+    db.add_song([songData.creator_id, songData.title, songData.url]).then(() => {
+        console.log("added new song")
+    })
+})
 
 
 const PORT = 3535;

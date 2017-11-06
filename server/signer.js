@@ -1,6 +1,8 @@
 require('dotenv').config();
 const aws = require('aws-sdk');
+
 // const config = require('../config');
+
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
@@ -35,4 +37,4 @@ const getSignedURL = (req, res) => {
   });
 }
 
-module.exports  = {getSignedURL}
+module.exports = {getSignedURL}

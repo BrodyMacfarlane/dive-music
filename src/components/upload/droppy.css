@@ -1,0 +1,7 @@
+.droppydrop {
+    padding: 100px;
+    margin: 50px;
+    border: 1px solid #4d4d4d;
+    border-radius: 3px;
+    cursor: pointer;
+}

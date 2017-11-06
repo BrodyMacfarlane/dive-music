@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { getUserInfo } from './../../ducks/users'
 import { connect } from 'react-redux'
-import Dropzone from 'react-dropzone'
 
 class Dashboard extends Component {
     constructor(props){
@@ -23,7 +22,7 @@ class Dashboard extends Component {
                 <p>Email: { user ? user.email : null }</p>
                 <p>ID: { user ? user.auth_id : null }</p>
                 <a href='http://localhost:3535/auth/logout'><button>Log out</button></a>
-            </div> 
+            </div>
         )
     }
 }
