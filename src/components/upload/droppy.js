@@ -15,12 +15,13 @@ class Droppy extends Component {
     }
     onDrop(files) {
       var file = files[0]
-      console.log(files)
+      let filename = this.props.user.auth_id + "/" + file.name
+      console.log(filename)
       this.setState({
         files: files
       })
       let filesTS = {
-        filename: file.name,
+        filename: filename,
         filetype: file.type
       }
       // files[0];

@@ -22,16 +22,30 @@ body {
 }
 
 .nav-flex {
-  padding: 20px;
+  padding: 21px;
 }
 
 .home-icon,.barger {
   width: 30px;
+  cursor: pointer;
 }
 
 .home-icon {
   position: relative;
   top: 10px;
+}
+
+.triangle-svg {
+  display: none;
+  fill: #D2D2D2;
+  stroke-width: 1px;
+  position: absolute;
+  right: 22px;
+  top: 54px;
+}
+
+#toggle {
+  display: block !important;
 }
 
 .grid-container {
@@ -134,4 +148,14 @@ body {
   color: #fff;
   border: 1px solid white;
   padding: 30px 90px 30px 90px;
+}
+
+/* INTRO */
+.intro {
+  border-bottom: 1px solid #1C1C1C;
+  font-size: 48px;
+  margin: 21px;
+  padding-top: 27px;
+  padding-bottom: 21px;
+  font-family: Lombok;
 }

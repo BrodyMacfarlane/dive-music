@@ -10,6 +10,9 @@ const express = require('express')
      ,sc = require('./signer')
 
 const app = express();
+
+app.use( express.static( `${__dirname}/../public/index.html` ) );
+
 app.use(bodyParser.json())
 app.use(session({
     secret: process.env.SECRET,
@@ -79,12 +82,11 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 
 
 app.get('/auth/me', (req, res) => {
-    console.log(req)
     if(req.user){
         return res.status(200).send(req.user)
     }
     else {
-        return res.status(401).send("Need to log in.")
+        return res.redirect(401, 'http://localhost:3000').send("Need to log in.")
     }
 })
 app.get('/auth/logout', (req, res) => {
@@ -101,7 +103,7 @@ app.post('/api/newSong', (req, res) => {
     const db = app.get('db')
     const songData = req.body
     db.add_song([songData.creator_id, songData.title, songData.url]).then(() => {
-        console.log("added new song")
+        return res.status(200).send(`added new song ${songData.title}`)
     })
 })
 

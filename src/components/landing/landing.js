@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Login extends Component {
+export default class Landing extends Component {
     render() {
         return(
             <div className="component login-component">
@@ -18,6 +18,9 @@ export default class Login extends Component {
                     <a href={process.env.REACT_APP_LOGIN}>
                         VIEW COLLECTION
                     </a>
+                </div>
+                <div className="intro">
+                    <div className="intro-title">DIVE IN...</div>
                 </div>
             </div> 
         )
