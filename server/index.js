@@ -11,7 +11,7 @@ const express = require('express')
 
 const app = express();
 
-app.use( express.static( `${__dirname}/../public/index.html` ) );
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(bodyParser.json())
 app.use(session({
@@ -76,7 +76,7 @@ passport.deserializeUser((id, done) => {
 
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/dashboard',
+    successRedirect: '/dashboard',
     failureRedirect: '/auth'
 }))
 
@@ -86,12 +86,12 @@ app.get('/auth/me', (req, res) => {
         return res.status(200).send(req.user)
     }
     else {
-        return res.redirect(401, 'http://localhost:3000').send("Need to log in.")
+        return res.redirect(401, '/auth').send("Need to log in.")
     }
 })
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    res.redirect(308, 'http://localhost:3000/')
+    res.redirect(308, '/')
 })
 
 
