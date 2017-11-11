@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
-
-// audio source
-const streamUrl = 'https://s3-us-west-1.amazonaws.com/mp3-storage-app/110203336999094146565/testsong.wav';
-
-// some track meta information
-const trackTitle = 'Pllm - RS8B';
+import axios from 'axios';
 
 export default class Players extends Component {
   constructor(){
     super()
     this.state = {
-      songs: [{trackTitle: "PLLM", streamUrl:"https://s3-us-west-1.amazonaws.com/mp3-storage-app/110203336999094146565/newsong.wav"}]
+      songs: []
     }
+  }
+  componentDidMount(){
+    axios.get('/api/getSongs')
+    .then((response) => {
+      console.log(response.data)
+      this.setState({songs: response.data})
+    })
   }
   render() {
     return (
       <div>
-        lol
+        {
+        this.state.songs.map((song, i) => {
+          console.log(song.url)
+          return (
+            <div key={i} className="song">
+              {song.title}
+              <audio src={song.url} controls />
+            </div>
+          )
+        })
+        }
       </div>
-      // <div>
-      //   <div>
-      //     <div>{song.trackTitle}</div>
-      //     <audio controls="controls" src={song.streamUrl}/>
-      //   </div>
-      // </div>
     );
   }
 }
