@@ -14,15 +14,27 @@ body {
   font-family: Blanch;
 }
 
-.navbar {
+.navspace {
   height: 80px;
+  width: 100%;
+  background-color: #1C1C1C;
+}
+
+.navbar {
+  z-index: 101;
+  top: 0px;
+  height: 80px;
+  width: 100%;
   background-color: #1C1C1C;
   display: flex;
   justify-content: space-between;
+  position: fixed;
 }
 
 .nav-flex {
   padding: 21px;
+  position: relative;
+  z-index: 1000;
 }
 
 .home-icon,.barger {
@@ -35,17 +47,97 @@ body {
   top: 10px;
 }
 
+/* Burger Anis */
+@keyframes triangleShow {
+  0% {
+    height: 54px;
+  }
+  100% {
+    height: 79px;
+  }
+}
+
+@keyframes menuShow {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .triangle-svg {
-  display: none;
-  fill: #D2D2D2;
+  fill: #f0f0f0;
   stroke-width: 1px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 54px;
+  overflow: hidden;
+}
+
+.triangle-svg svg {
   position: absolute;
   right: 22px;
   top: 54px;
 }
 
-#toggle {
+#toggle-triangle {
   display: block !important;
+  animation: triangleShow 1s forwards;
+}
+
+#toggle-menu {
+  animation: menuShow 0.4s forwards;
+}
+
+.menu {
+  z-index: 101;
+  position: absolute;
+  top: 71px;
+  width: 0px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.menu a {
+  text-decoration: none !important;
+}
+
+@keyframes pathExpander {
+  0% {
+    width: 60%;
+  }
+  30% {
+    width: 75%;
+  }
+  55% {
+    width: 60%;
+  }
+  100% {
+    width: 66%;
+  }
+}
+
+.path:hover {
+  animation: pathExpander 0.4s forwards;
+}
+
+.path {
+  text-align: right;
+  z-index: 101;
+  padding: 80px 0px 80px 0px;
+  width: 60%;
+  background-color: #FFF;
+}
+
+.path-text {
+  font-family: Lombok;
+  font-size: 24px;
+  position: relative;
+  left: 33px;
+  color: #000;
 }
 
 .grid-container {

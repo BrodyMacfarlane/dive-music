@@ -5,7 +5,7 @@ export default class Players extends Component {
   constructor(){
     super()
     this.state = {
-      songs: []
+      songs: [{title: ''}]
     }
   }
   componentDidMount(){
@@ -20,10 +20,9 @@ export default class Players extends Component {
       <div>
         {
         this.state.songs.map((song, i) => {
-          console.log(song.url)
           return (
             <div key={i} className="song">
-              {song.title}
+              {song.title.split(".")[0]} by <a href={`/#/profile/${song.creator_id}`}>{song.username}</a>
               <audio src={song.url} controls />
             </div>
           )
