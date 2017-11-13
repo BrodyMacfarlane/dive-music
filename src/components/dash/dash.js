@@ -18,11 +18,20 @@ class Dashboard extends Component {
         const user = this.props.user
         return(
             <div className='component dash-component'>
-                <a href="/#/upload"><div>Upload a song</div></a>
-                <p>Username: { user ? user.username : null }</p>
-                <p>Email: { user ? user.email : null }</p>
-                <p>ID: { user ? user.auth_id : null }</p>
-                <a href='http://localhost:3535/auth/logout'><button>Log out</button></a>
+                <div className="welcome-user">
+                    <div className="welcome-text">
+                        Welcome <br /> { user ? user.username : null }
+                    </div>
+                    <div className="user-id">
+                         { user.auth_id ? 'ID: ' + user.auth_id : null }
+                    </div>
+                    <div>
+                        <a class="logout-link" href='http://localhost:3535/auth/logout'>
+                            <div className="logout">Log out</div>
+                        </a>
+                    </div>
+                </div>
+                
                 <Players />
             </div>
         )

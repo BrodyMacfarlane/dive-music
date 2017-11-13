@@ -251,3 +251,81 @@ body {
   padding-bottom: 21px;
   font-family: Lombok;
 }
+
+/* PLAYER */
+audio {
+  width: 100%;
+  margin-top: 39px;
+}
+
+.song {
+  margin: auto;
+  background-color: #f0f0f0;
+  width: 80%;
+  height: 150px;
+  margin-top: 69px;
+  margin-bottom: 69px;
+  color: #1C1C1C;
+}
+
+.song-link {
+  color: #1c1c1c;
+  text-decoration: underline;
+}
+
+.song-title {
+  padding-top: 50px;
+  font-size: 28px;
+}
+
+.welcome-user {
+  font-size: 24px;
+  font-family: Lombok;
+  text-transform: uppercase;
+  padding-top: 60px;
+  padding-bottom: 40px;
+  margin-bottom: 30px;
+  /* border-bottom: 1px solid #000; */
+  background-color: #FAFAFA;
+}
+
+.welcome-text {
+  padding-bottom: 6px;
+  margin: 0px 72px 0px 72px;
+  border-bottom: 1px solid #000;
+}
+
+.user-id {
+  font-family: Blanch;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.logout {
+  color: #000;
+  text-decoration: none;
+  border: 1px solid #000; 
+  padding: 18px;
+  font-size: 14px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 1px;
+}
+
+.logout-link {
+  color: #000;
+  text-decoration: none;
+}
+
+.drop-title {
+  padding: 50px;
+  font-family: Lombok;
+  font-size: 24px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #000;
+}
+
+.file-dropped {
+  font-family: Blanch;
+  font-size: 20px;
+}

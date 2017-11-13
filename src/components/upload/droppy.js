@@ -55,18 +55,20 @@ class Droppy extends Component {
       const user = this.props.user
       return (
         <div className="container dropzone-container">
+          <div className="drop-title">
+            <div>Dropped file:</div>
+            <div className="file-dropped">
+              {
+                this.state.files.map(f => <div key={f.name}>Upload complete for: {f.name} - {f.size/1024 > 1000 ? (Math.floor(f.size/104857.6))/10 + "mb" : (Math.floor(f.size/102.4))/10 + "kb"}</div>)
+              }
+            </div>
+          </div>
+          
           <div className="dropzone">
-            <Dropzone className="droppydrop" onDrop={this.onDrop.bind(this)}>
+            <Dropzone className="droppydrop" accept="audio/mp3, audio/wav" onDrop={this.onDrop.bind(this)}>
               <div>Drop a file here, or click to select a file to upload.</div>
             </Dropzone>
           </div>
-            <div>Dropped file:</div>
-            <div>
-              {
-                this.state.files.map(f => <div key={f.name}>{f.name} - {f.size/1024 > 1000 ? (Math.floor(f.size/104857.6))/10 + "mb" : (Math.floor(f.size/102.4))/10 + "kb"}</div>)
-              }
-            </div>
-            <p>Users auth id: { user ? user.auth_id : null }</p>
         </div>
       );
     }
